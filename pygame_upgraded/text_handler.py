@@ -38,7 +38,8 @@ def right_chat_bubble(mood_score):
 def pop_up_bubbles(state, gunnar_mood_score, ada_mood_score):
     if state == "one click":
         left_chat_bubble(gunnar_mood_score)
-
-    if state == "two clicks":
-        left_chat_bubble(gunnar_mood_score)
         right_chat_bubble(ada_mood_score)
+
+    # if state == "two clicks":
+    #     left_chat_bubble(gunnar_mood_score)
+    #

@@ -119,18 +119,10 @@ class StartScreen:
         self.gunnar_mood_score = 0
         self.ada_mood_score = 0
         #self.music = music_intro()
-
-    def handle_keydown(self, key):
-        if key == pg.K_RETURN:
-            if self.popup_state == "not clicked":
-                self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
-                gunnar.add_health(self.gunnar_mood_score)
-                self.popup_state = "one click"
-            elif self.popup_state == "one click":
-                self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
-                ada.add_health(self.ada_mood_score)
-                self.popup_state = "two clicks"
-        return self
+    #
+    # def handle_keydown(self, key):
+    #     if key == pg.K_RETURN:
+    #
 
     def handle_mouse_button(self, button):
         mx, my = pg.mouse.get_pos()
@@ -138,6 +130,12 @@ class StartScreen:
         quit_button_rect = pg.Rect(650, 30, 140, 40)
         if button == 1:
             if battle_button_rect.collidepoint((mx, my)):
+                if self.popup_state == "not clicked":
+                    self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
+                    gunnar.add_health(self.gunnar_mood_score)
+                    self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
+                    ada.add_health(self.ada_mood_score)
+                    self.popup_state = "one click"
                 music_battle()
                 return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
