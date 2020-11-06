@@ -20,8 +20,8 @@ class QuizStartScreen:
 
         global return_screen
         return_screen = return_screen_
-        music("quizz_music.mp3")
-        background_image_raw = pygame.image.load("Background_forest.jpg").convert()
+        music("music/quizz_music.mp3")
+        background_image_raw = pygame.image.load("images/Background_forest.jpg").convert()
         self.background_image = pygame.transform.scale(background_image_raw, screen_size)
         self.title = TextBox(rel_pos=(0.5, 0.1), font_name=FONT_ROBOTO,
                              font_size=30, font_bold=False, color=WHITE, text="It's quiz time!")
@@ -79,7 +79,7 @@ class QuizStartScreen:
 class QuizScreen:
 
     def __init__(self, quiz_category):
-        background_image_raw = pygame.image.load("Background_forest.jpg").convert()
+        background_image_raw = pygame.image.load("images/Background_forest.jpg").convert()
         self.background_image = pygame.transform.scale(background_image_raw, screen_size)
         self.title = None
         self.question_text = None
@@ -193,7 +193,7 @@ class QuizFinishedScreen:
                         f"Better luck next time!"
             sound("music/booing_crowd.mp3")
 
-        background_image_raw = pygame.image.load("Background_forest.jpg").convert()
+        background_image_raw = pygame.image.load("images/Background_forest.jpg").convert()
         self.background_image = pygame.transform.scale(background_image_raw, screen_size)
 
         self.title = TextBox(rel_pos=(0.5, 0.1), font_name=FONT_ROBOTO,
@@ -203,7 +203,7 @@ class QuizFinishedScreen:
         self.info_text = TextBox(rel_pos=(0.5, 0.25), font_name=FONT_ROBOTO,
                                      font_size=25, font_bold=False, color=WHITE, text=info_text, line_width=55)
 
-        self.poketer_image = pygame.image.load("Green_monster_resized.png").convert_alpha()
+        self.poketer_image = pygame.image.load("images/Green_monster_resized.png").convert_alpha()
         self.poketer_image = pygame.transform.smoothscale(self.poketer_image, (207, 207))
 
         self.quiz_finished_button = Button(rel_pos=(0.5, 0.85), rel_size=(0.3, 0.15),

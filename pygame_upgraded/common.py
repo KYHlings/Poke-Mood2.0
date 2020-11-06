@@ -18,6 +18,7 @@ screen_size = (800, 600)
 
 
 # https://stackoverflow.com/questions/13034496/using-global-variables-between-files
+# Deklarer global variabel mellan filer.
 def common_init():
     global next_screen
     next_screen = None

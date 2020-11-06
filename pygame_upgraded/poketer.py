@@ -55,11 +55,11 @@ class Poketer:
             if critchance >= 4:
                 opponent_pokemon.health -= (self.attack + dmg_modifier) * 2
                 atk_txt(self.name, opponent_pokemon.name, "3 2 1...")
-                self.healtcheck(opponent_pokemon)
+                self.healthcheck(opponent_pokemon,opponent_name)
             elif critchance < 4:
                 opponent_pokemon.health -= (self.attack + dmg_modifier)
                 atk_txt(self.name, opponent_pokemon.name, "3 2 1...")
-                self.healtcheck(opponent_pokemon)
+                self.healthcheck(opponent_pokemon)
         else:
             print(f"{opponent_pokemon.name} missade sin attack...")
 

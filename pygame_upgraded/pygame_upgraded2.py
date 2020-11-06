@@ -52,7 +52,7 @@ crashed = False
 
 base_font = pg.font.SysFont("roboto mono", 30, True)
 
-bg = pg.image.load("Background_forest.jpg").convert()
+bg = pg.image.load("images/Background_forest.jpg").convert()
 background = pg.transform.scale(bg, (800, 600))
 screen.blit(background, (0, 0))
 
@@ -222,7 +222,7 @@ def block_button(mouse):
 
 
 def chat_bubble_left():
-    left = pg.image.load('Chat_bubble_left.png').convert_alpha()
+    left = pg.image.load('images/Chat_bubble_left.png').convert_alpha()
     left_small = pg.transform.scale(left, (300, 170))
     screen.blit(left_small, (250, 50))
     mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
@@ -230,7 +230,7 @@ def chat_bubble_left():
 
 
 def chat_bubble_right():
-    right = pg.image.load('Chat_bubble_right.png').convert_alpha()
+    right = pg.image.load('images/Chat_bubble_right.png').convert_alpha()
     right_small = pg.transform.scale(right, (300, 170))
     screen.blit(right_small, (260, 350))
     mood_score = calc_mood_score(ada.mood, "Stockholm", live=False)

@@ -17,22 +17,22 @@ width = 800
 height = 600
 screen = pg.display.set_mode((width, height))
 
-bg = pg.image.load("Background_forest.jpg")
+bg = pg.image.load("images/Background_forest.jpg")
 background = pg.transform.scale(bg, (800, 600))
 
-vs_sign = pg.image.load("VS.PNG")
+vs_sign = pg.image.load("images/VS.PNG")
 vs_sign = pg.transform.scale(vs_sign, (200, 150))
 
-background_win = pg.image.load("winning_pic.jpg")
+background_win = pg.image.load("images/winning_pic.jpg")
 background_win = pg.transform.scale(background_win, (800, 600))
 
-logo = pg.image.load("LOGO.PNG")
+logo = pg.image.load("images/LOGO.PNG")
 logo = pg.transform.scale(logo, (360, 222))
 
-start_background = pg.image.load("background_start.png")
+start_background = pg.image.load("images/background_start.png")
 start_background = pg.transform.scale(start_background, (800, 600))
 
-instructions_frame = pg.image.load("Frame_background.PNG")
+instructions_frame = pg.image.load("images/Frame_background.PNG")
 instructions_frame = pg.transform.scale(instructions_frame, (650, 450))
 
 start_screen = None
@@ -62,8 +62,8 @@ class Poketer:
         self.health += health_score
         
 
-gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO", img_name="Green_monster_resized.png")
-ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="Pink_dragon_01.png")
+gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO", img_name="images/Green_monster_resized.png")
+ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="images/Pink_dragon_01.png")
 
 
 def attack_function(attacker, defender):
@@ -425,11 +425,11 @@ class WinnerScreenGunnar:
         gunnar_bigger = pg.transform.scale(gunnar.image, (350, 350))
         screen.blit(gunnar_bigger, (220, 235 + y_off))
         winning_crown_hasse_moving()
-        pink_dragon_sad = pg.image.load("Pink_dragon_05.png")
+        pink_dragon_sad = pg.image.load("images/Pink_dragon_05.png")
         pink_dragon_sad = pg.transform.scale(pink_dragon_sad, (204, 235))
         screen.blit(pink_dragon_sad, (25, 340))
         screen.blit(logo, (213, -55))
-        tear_drop = pg.image.load("tear-png-20.png")
+        tear_drop = pg.image.load("images/tear-png-20.png")
         tear_drop = pg.transform.scale(tear_drop, (25, 25))
         screen.blit(tear_drop, (120, 410))
         text_speech(screen, "RobotoSlab-Medium.ttf", 30, "Congratulations,", YELLOW_LIGHT, 389, 150, True)
@@ -460,13 +460,13 @@ class WinnerScreenAda:
     def render(self, screen):
         screen.fill(WHITE)
         screen.blit(background_win, (0, 0))
-        ada_win_pic = pg.image.load("Pink_dragon_08.png")
+        ada_win_pic = pg.image.load("images/Pink_dragon_08.png")
         ada_win_pic = pg.transform.scale(ada_win_pic, (350, 350))
         screen.blit(ada_win_pic, (205, 285))
         winning_crown_ada_moving()
         gunnar_lose = pg.transform.scale(gunnar.image, (200, 200))
         screen.blit(gunnar_lose, (25, 355))
-        tear_drop = pg.image.load("tear-png-20.png")
+        tear_drop = pg.image.load("images/tear-png-20.png")
         tear_drop = pg.transform.scale(tear_drop, (25, 25))
         screen.blit(tear_drop, (90, 430))
         screen.blit(logo, (215, -55))
@@ -526,14 +526,14 @@ def aggressive_ada(x, y, a, b):
 
 
 def left_chat_bubble(mood_score):
-    left_bubble = pg.image.load("Chat_bubble_left.png")
+    left_bubble = pg.image.load("images/Chat_bubble_left.png")
     left_bubble = pg.transform.scale(left_bubble, (300, 170))
     screen.blit(left_bubble, (250, 50))
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"Moodscore: {mood_score}", BLACK, 390, 135, True)
 
 
 def right_chat_bubble(mood_score):
-    right_bubble = pg.image.load("Chat_bubble_right.png")
+    right_bubble = pg.image.load("images/Chat_bubble_right.png")
     right_bubble = pg.transform.scale(right_bubble, (300, 170))
     screen.blit(right_bubble, (260, 350))
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"Moodscore: {mood_score}", BLACK, 370, 435, True)
@@ -668,7 +668,7 @@ def quit_button_start():
 
 
 def sword(turn):
-    sword = pg.image.load("sword_resized.png")
+    sword = pg.image.load("images/sword_resized.png")
     x_off, y_off = periodic_movement(1, 5)
     if turn == "user":
         rotate_image = pg.transform.rotozoom(sword, 0 + x_off, 1)
@@ -678,7 +678,7 @@ def sword(turn):
     screen.blit(rotate_image, new_rect)
 
 def crossed_sword():
-    double_sword = pg.image.load("Sword_crossed_01.PNG")
+    double_sword = pg.image.load("images/Sword_crossed_01.PNG")
     double_sword = pg.transform.smoothscale(double_sword, (230, 230))
 
     x_off, y_off = periodic_movement(1, 7)
@@ -689,13 +689,13 @@ def crossed_sword():
     screen.blit(shield, blit_rect)
 
 def winning_crown_hasse_moving():
-    winning_crown = pg.image.load("crown.png")
+    winning_crown = pg.image.load("images/crown.png")
     winning_crown = pg.transform.scale(winning_crown, (170, 140))
     x_off, y_off = periodic_movement(1, 5)
     screen.blit(winning_crown, (270, 180 + y_off))
 
 def winning_crown_ada_moving():
-    winning_crown = pg.image.load("crown.png")
+    winning_crown = pg.image.load("images/crown.png")
     winning_crown = pg.transform.scale(winning_crown, (151, 124))
     x_off, y_off = periodic_movement(1, 5)
     screen.blit(winning_crown, (340, 245 + y_off))
@@ -703,45 +703,45 @@ def winning_crown_ada_moving():
 
 def music_intro():
     pg.mixer.init()
-    pg.mixer.music.load("intro_song_1.mp3")
+    pg.mixer.music.load("music/intro_song_1.mp3")
     pg.mixer.music.play(-1)
     pg.mixer.music.set_volume(0.1)
 
 
 def music_battle():
     pg.mixer.init()
-    pg.mixer.music.load("battle_time_1.mp3")
+    pg.mixer.music.load("music/battle_time_1.mp3")
     pg.mixer.music.play(-1)
     pg.mixer.music.set_volume(0.1)
 
 def music_win_game_melody():
     pg.mixer.init()
-    pg.mixer.music.load("vinnar_låt_utkast.mp3")
+    pg.mixer.music.load("music/vinnar_låt_utkast.mp3")
     pg.mixer.music.play(-1)
     pg.mixer.music.set_volume(0.3)
 
 
 def music_lose_game_melody():
     pg.mixer.init()
-    pg.mixer.music.load("lose_game_melody.mp3")
+    pg.mixer.music.load("music/lose_game_melody.mp3")
     pg.mixer.music.play(-1)
     pg.mixer.music.set_volume(0.2)
 
 
 def sound_ambient_hover_over_attack_btn():
-    sound = mixer.Sound("ambient_attack_c_short.mp3")
+    sound = mixer.Sound("music/ambient_attack_c_short.mp3")
     sound.play(1)
     sound.set_volume(0.1)
 
 
 def sound_ambient_hover_over_special_attack_btn():
-    sound = mixer.Sound("ambient_special_attack_c1_short.mp3")
+    sound = mixer.Sound("music/ambient_special_attack_c1_short.mp3")
     sound.play()
     sound.set_volume(0.1)
 
 
 def sound_ambient_hover_quizz_btn():
-    sound = mixer.Sound("ambient_quizz_c2_short.mp3")
+    sound = mixer.Sound("music/ambient_quizz_c2_short.mp3")
     sound.play()
     sound.set_volume(0.1)
 
