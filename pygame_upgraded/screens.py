@@ -130,12 +130,13 @@ class StartScreen:
         quit_button_rect = pg.Rect(650, 30, 140, 40)
         if button == 1:
             if battle_button_rect.collidepoint((mx, my)):
-                if self.popup_state == "not clicked":
-                    self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
-                    gunnar.add_health(self.gunnar_mood_score)
-                    self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
-                    ada.add_health(self.ada_mood_score)
-                    self.popup_state = "one click"
+                if self.gunnar_mood_score == 0:
+                    if self.popup_state == "not clicked":
+                        self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
+                        gunnar.add_health(self.gunnar_mood_score)
+                        self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
+                        ada.add_health(self.ada_mood_score)
+                        self.popup_state = "one click"
                 music_battle()
                 return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
@@ -172,15 +173,15 @@ class BattleScreen:
     def handle_mouse_button(self, button):
         mx, my = pg.mouse.get_pos()
         quit_button_rect = pg.Rect(650, 30, 140, 40)
-        back_button_rect = pg.Rect(30, 540, 140, 40)
+        #back_button_rect = pg.Rect(30, 540, 140, 40)
         attack_button_rect = pg.Rect(87, 430, 150, 50)
         block_button_rect = pg.Rect(325, 430, 150, 50)
         quiz_button_rect = pg.Rect(563, 430, 150, 50)
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
                 sys.exit()
-            if back_button_rect.collidepoint((mx, my)):
-                return StartScreen()
+            # if back_button_rect.collidepoint((mx, my)):
+            #     return StartScreen()
             if attack_button_rect.collidepoint((mx, my)):
                 return AttackScreen("user")
             if block_button_rect.collidepoint((mx, my)):
@@ -202,7 +203,7 @@ class BattleScreen:
 
         screen.blit(vs_sign1, (300, 225))
         quit_button()
-        back_button()
+        #back_button()
         attack_button()
         special_attack_button()
         quiz_button()
