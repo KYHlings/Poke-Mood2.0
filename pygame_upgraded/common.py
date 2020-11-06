@@ -1,8 +1,6 @@
 import math
 import textwrap
 import pygame
-from pygame import mixer
-
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -122,14 +120,3 @@ def rel_to_pix(rel_pos):
     return pix_pos
 
 
-def music(filename):
-    pygame.mixer.init()
-    pygame.mixer.music.load(filename)
-    pygame.mixer.music.play(-1)
-    pygame.mixer.music.set_volume(0.1)
-
-
-def sound(filename):
-    sound = mixer.Sound(filename)
-    sound.play()
-    sound.set_volume(0.2)

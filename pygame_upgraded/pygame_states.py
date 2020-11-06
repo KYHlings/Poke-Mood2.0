@@ -1,7 +1,6 @@
 import pygame as pg
 from random import randint
 import sys
-from pygame import mixer
 
 from Pygame.constants import *
 from mood_score import calc_mood_score
@@ -12,6 +11,10 @@ from common import TextBox, periodic_movement
 from TextToPygame import start_game
 
 #print("Lets use your new stats, press [Enter] to ge in to the World of Poketeers")
+from pygame_upgraded.music import sound_ambient_hover_quizz_btn, sound_ambient_hover_over_attack_btn, \
+    sound_ambient_hover_over_special_attack_btn, music_lose_game_melody, music_win_game_melody, music_battle, \
+    music_intro
+
 pg.init()
 width = 800
 height = 600
@@ -694,56 +697,12 @@ def winning_crown_hasse_moving():
     x_off, y_off = periodic_movement(1, 5)
     screen.blit(winning_crown, (270, 180 + y_off))
 
+
 def winning_crown_ada_moving():
     winning_crown = pg.image.load("images/crown.png")
     winning_crown = pg.transform.scale(winning_crown, (151, 124))
     x_off, y_off = periodic_movement(1, 5)
     screen.blit(winning_crown, (340, 245 + y_off))
-
-
-def music_intro():
-    pg.mixer.init()
-    pg.mixer.music.load("music/intro_song_1.mp3")
-    pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.1)
-
-
-def music_battle():
-    pg.mixer.init()
-    pg.mixer.music.load("music/battle_time_1.mp3")
-    pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.1)
-
-def music_win_game_melody():
-    pg.mixer.init()
-    pg.mixer.music.load("music/vinnar_låt_utkast.mp3")
-    pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.3)
-
-
-def music_lose_game_melody():
-    pg.mixer.init()
-    pg.mixer.music.load("music/lose_game_melody.mp3")
-    pg.mixer.music.play(-1)
-    pg.mixer.music.set_volume(0.2)
-
-
-def sound_ambient_hover_over_attack_btn():
-    sound = mixer.Sound("music/ambient_attack_c_short.mp3")
-    sound.play(1)
-    sound.set_volume(0.1)
-
-
-def sound_ambient_hover_over_special_attack_btn():
-    sound = mixer.Sound("music/ambient_special_attack_c1_short.mp3")
-    sound.play()
-    sound.set_volume(0.1)
-
-
-def sound_ambient_hover_quizz_btn():
-    sound = mixer.Sound("music/ambient_quizz_c2_short.mp3")
-    sound.play()
-    sound.set_volume(0.1)
 
 
 if __name__ == '__main__':
