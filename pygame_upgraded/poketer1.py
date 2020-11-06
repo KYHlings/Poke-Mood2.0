@@ -3,7 +3,7 @@ from random import randint
 from termcolor import colored
 #from prints_module import atk_txt, delay_print, successful_block, unsuccessful_block
 from pygame_upgraded.Textbased_Pygame.print_module import atk_txt
-from pygame_upgraded.common import periodic_movement
+from pygame_upgraded.global_stuff import periodic_movement
 
 
 class Poketer1:

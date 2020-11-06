@@ -5,7 +5,7 @@ from TextToPygame import start_game
 
 #print("Lets use your new stats, press [Enter] to ge in to the World of Poketeers")
 import pygame_upgraded.variables
-from pygame_upgraded import common
+from pygame_upgraded import global_stuff
 from pygame_upgraded.screens import MenuStartScreen, StartScreen
 from pygame_upgraded.variables import screen
 
@@ -34,10 +34,10 @@ def mainloop(screen):
         elif ev.type == pg.QUIT:
             break
 
-        if common.next_screen is not None:
+        if global_stuff.next_screen is not None:
             #print("changing frames to", type(common.next_screen))
-            state = common.next_screen
-            common.next_screen = None
+            state = global_stuff.next_screen
+            global_stuff.next_screen = None
 
         state = state.handle_timer()
         state.render(screen)
@@ -48,7 +48,7 @@ def mainloop(screen):
 
 if __name__ == '__main__':
     start_game(False)
-    common.common_init()
+    global_stuff.common_init()
     pg.display.set_caption("PokeMood")
     mainloop(screen)
     pg.quit()

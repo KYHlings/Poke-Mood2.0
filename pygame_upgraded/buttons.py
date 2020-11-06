@@ -1,11 +1,12 @@
+import pygame
 import pygame as pg
 
 from Pygame.constants import BLACK, COLOR_LIGHT_SELECTED, COLOR_LIGHT_UNSELECTED, LIGHT_RED_SELECTED, \
     LIGHT_RED_UNSELECTED, LIGHT_BLUE_SELECTED, LIGHT_BLUE_UNSELECTED, LIGHT_GREEN_SELECTED, LIGHT_GREEN_UNSELECTED
 from pygame_upgraded.music import sound_ambient_hover_over_attack_btn, sound_ambient_hover_over_special_attack_btn, \
     sound_ambient_hover_quizz_btn
-from pygame_upgraded.text_handler import text_speech
-from pygame_upgraded.variables import width, height, screen
+from pygame_upgraded.text_handler import text_speech, TextBox
+from pygame_upgraded.variables import width, height, screen, screen_size, FONT_ROBOTO, QUIZ_DARKGREEN
 
 
 def battle_time_button():
@@ -125,3 +126,51 @@ def quit_button_start():
         pg.draw.rect(screen, COLOR_LIGHT_UNSELECTED, (277, 442, 236, 61))
         text_speech(screen, "RobotoSlab-Black.ttf", 30, "Quit Game", BLACK, width / 2.025,
                     height / 1.27, True)
+
+
+class Button:
+    def __init__(self, rel_pos, rel_size, color, highlight, font_size, font_color, text):
+        self.position = (screen_size[0] * rel_pos[0], screen_size[1] * rel_pos[1])
+        self.size = (screen_size[0] * rel_size[0], screen_size[1] * rel_size[1])
+        self.color = color
+        self.highlight = highlight
+        self.text = TextBox(rel_pos=rel_pos, font_name=FONT_ROBOTO,
+                            font_size=font_size, font_bold=False, color=font_color, text=text, line_width=28)
+        self.button_rect = pygame.Rect(self.position[0], self.position[1], self.size[0] - 3, self.size[1] - 3)
+        self.button_rect.center = self.position[0], self.position[1]
+        self.button_frame_rect = pygame.Rect(0, 0, self.size[0], self.size[1])  # x, y, width, height
+        self.button_frame_rect.center = self.position[0], self.position[1]
+        self.enabled = True
+
+    def handle_keydown(self, key):
+        pass
+
+    def handle_mouse_button(self, mouse_button):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.button_rect.collidepoint(mouse_pos) and mouse_button == 1 and self.enabled:
+            return True
+        else:
+            return False
+
+    def render(self, screen):
+        pygame.draw.rect(screen, QUIZ_DARKGREEN, self.button_frame_rect, 4)  # button frame
+
+        mouse_pos = pygame.mouse.get_pos()
+        if self.button_rect.collidepoint(mouse_pos) and self.enabled:  # If mouse on button - highlight button
+            if len(self.highlight) == 4:
+                s = pygame.Surface((self.button_rect.width, self.button_rect.height),
+                                   pygame.SRCALPHA)  # per-pixel alpha
+                s.fill(self.highlight)  # notice the alpha value in the color
+                screen.blit(s, self.button_rect)
+            else:
+                pygame.draw.rect(screen, self.highlight, self.button_rect)
+        else:
+            if len(self.color) == 4:
+                s = pygame.Surface((self.button_rect.width, self.button_rect.height),
+                                   pygame.SRCALPHA)  # per-pixel alpha
+                s.fill(self.color)  # notice the alpha value in the color
+                screen.blit(s, self.button_rect)
+            else:
+                pygame.draw.rect(screen, self.color, self.button_rect)
+
+        self.text.render(screen)

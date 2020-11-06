@@ -1,9 +1,10 @@
 import math
 import pygame
 
-from pygame_upgraded import common
-from pygame_upgraded.common import TextBox, screen_size, FONT_ROBOTO, Button, QUIZ_TRANSP_GREEN, \
-    QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, QUIZ_TRANSP_RED, rel_to_pix
+from pygame_upgraded import global_stuff
+from pygame_upgraded.global_stuff import rel_to_pix
+from pygame_upgraded.text_handler import TextBox
+from pygame_upgraded.buttons import Button
 from pygame_upgraded.variables import *
 
 
@@ -64,7 +65,7 @@ class QuizStartScreen:
         if clicked_button_idx is not None:
             for category_button in self.category_buttons:
                 category_button.enabled = False
-            common.next_screen = QuizScreen(self.categories[clicked_button_idx])
+            global_stuff.next_screen = QuizScreen(self.categories[clicked_button_idx])
 
     def handle_timer(self):
         return self
@@ -111,7 +112,7 @@ class QuizScreen:
         self.current_question += 1
 
         if self.current_question == self.number_of_quiz_questions + 1:
-            common.next_screen = QuizFinishedScreen(self.num_of_correct_ans, self.number_of_quiz_questions)
+            global_stuff.next_screen = QuizFinishedScreen(self.num_of_correct_ans, self.number_of_quiz_questions)
             return
 
         self.correct_answer_idx = self.answer_options[self.current_question - 1].index(
@@ -221,7 +222,7 @@ class QuizFinishedScreen:
     def handle_mouse_button(self, mouse_button):
         if self.quiz_finished_button.handle_mouse_button(mouse_button):
             #common.next_screen = QuizStartScreen(5, quiz_categories)
-            common.next_screen = return_screen
+            global_stuff.next_screen = return_screen
             music("music/battle_time_1.mp3")
 
     def handle_timer(self):
@@ -263,9 +264,9 @@ def mainloop(screen, font):
         elif ev.type == pygame.QUIT:
             break
 
-        if common.next_screen is not None:
-            current_screen = common.next_screen
-            common.next_screen = None
+        if global_stuff.next_screen is not None:
+            current_screen = global_stuff.next_screen
+            global_stuff.next_screen = None
 
         current_screen.handle_timer()
 
@@ -277,7 +278,7 @@ def mainloop(screen, font):
 
 
 if __name__ == '__main__':
-    common.common_init()
+    global_stuff.common_init()
     pygame.init()
     screen = pygame.display.set_mode(screen_size)
     pygame.display.set_caption("PokeMood")

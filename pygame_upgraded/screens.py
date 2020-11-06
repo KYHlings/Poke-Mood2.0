@@ -3,13 +3,13 @@ import sys
 import pygame as pg
 
 from Pygame.constants import WHITE, YELLOW_LIGHT, BLACK, YELLOW, RED
-from pygame_upgraded import common
-from pygame_upgraded.common import periodic_movement, TextBox
+from pygame_upgraded import global_stuff
+from pygame_upgraded.global_stuff import periodic_movement
 from pygame_upgraded.mood_score import calc_mood_score
 from pygame_upgraded.music import music_lose_game_melody, music_intro, music_battle, music_win_game_melody
 from pygame_upgraded.quiz import QuizStartScreen
 from pygame_upgraded.quiz_api import quiz_categories
-from pygame_upgraded.text_handler import text_speech, pop_up_bubbles
+from pygame_upgraded.text_handler import text_speech, pop_up_bubbles, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
     aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
@@ -186,7 +186,7 @@ class BattleScreen:
             if block_button_rect.collidepoint((mx, my)):
                 return SpecialAttackScreen("user")
             if quiz_button_rect.collidepoint((mx, my)):
-                common.next_screen = QuizStartScreen(5, quiz_categories, self, gunnar)
+                global_stuff.next_screen = QuizStartScreen(5, quiz_categories, self, gunnar)
         return self
 
     def handle_timer(self):
