@@ -124,8 +124,8 @@ def start_game(live):
 
     gunnar = Poketer(colored("Happy Gunnar", 'yellow'), 'happy', 'yellow', 50, 50, 45, catchword="#YOLO")
     ada = Poketer(colored("Aggressiva Ada", 'red'), 'angry', 'red', 50, 50, 45, catchword="#FTW")
-    #louise = Poketer(colored("Ledsna Louise", 'blue'), 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
-    #kalle = Poketer(colored("Kärleksfulla Kalle", 'magenta'), 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
+    #louise = Poketer1(colored("Ledsna Louise", 'blue'), 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
+    #kalle = Poketer1(colored("Kärleksfulla Kalle", 'magenta'), 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
 
 
     user = User(colored(username, gunnar.color))

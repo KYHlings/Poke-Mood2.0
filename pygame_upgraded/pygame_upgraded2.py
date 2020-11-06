@@ -113,8 +113,8 @@ gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO
 ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="Pink_dragon_01.png")
 
 
-# louise = Poketer("Ledsna Louise", 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
-# kalle = Poketer("Kärleksfulla Kalle", 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
+# louise = Poketer1("Ledsna Louise", 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
+# kalle = Poketer1("Kärleksfulla Kalle", 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
 
 
 def text_input(input_rect, user_text):

@@ -16,8 +16,8 @@ def intro_card(poketer, is_cpu, live):
         city = random.choice(cities)
     else:
         x = """
-        Din Poketer har ett visst humör. Du har nu möjligheten att öka din Poketers hälsa
-        genom att söka efter en stad i Sverige där du tror att invånarna är på samma humör som din Poketer.
+        Din Poketer1 har ett visst humör. Du har nu möjligheten att öka din Poketers hälsa
+        genom att söka efter en stad i Sverige där du tror att invånarna är på samma humör som din Poketer1.
         Invånarnas humör baseras på vad de twittrar. Ju mer känslosamma de är desto mer ökar
         din Poketers hälsa. Lycka till!"""
         print_frame([x], 'white', 15)
@@ -66,7 +66,7 @@ def card_attack(user_pokemon, cpu, cpu_pokemon, is_cpu):
     else:
         user_pokemon.attack_fnc(cpu_pokemon)
         if cpu_pokemon.get_health() <= 0:
-            print(f'*** Din motståndares Poketer {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
+            print(f'*** Din motståndares Poketer1 {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
 
     input("\nTryck enter för att fortsätta\n")
 
@@ -84,7 +84,7 @@ def card_block(user, user_pokemon, cpu, cpu_pokemon, is_cpu):
     if is_cpu:
         cpu_pokemon.block(user, user_pokemon)
         if cpu_pokemon.get_health() <= 0:
-            print(f'*** Din motståndares Poketer {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
+            print(f'*** Din motståndares Poketer1 {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
     else:
         user_pokemon.block(cpu, cpu_pokemon)
         if user_pokemon.get_health() <= 0:
@@ -109,7 +109,7 @@ def chance_card_attack(player, poketer, is_cpu, live):
     else:
         x = f"""
         Chanskort - attack! Välj en stad och gissa vilket humör som är mest förekommande bland invånarna.
-        Gissar du rätt belönas din Poketer med {attack_bonus} p i ökad attack-styrka. Gissar du fel bestraffas din Poketer
+        Gissar du rätt belönas din Poketer1 med {attack_bonus} p i ökad attack-styrka. Gissar du fel bestraffas din Poketer1
         och förlorar {attack_bonus} p i attack-styrka. Lycka till!"""
         print_frame([x], 'white', 15)
         city = choose_city()
@@ -289,11 +289,11 @@ mer aktuellt i samhällsdebatten."""
 def quiz_card(player, poketer, is_cpu, available_poketers):
 
     if is_cpu:
-        x = f"""{player.name} valde quiz och har nu chansen att vinna en till Poketer! """
+        x = f"""{player.name} valde quiz och har nu chansen att vinna en till Poketer1! """
         print_frame([x], poketer.color, 15)
     else:
         x = f"""
-        Quiz-dags! Om du svarar rätt på alla quiz-frågor får du välja en till Poketer. Frågekategorierna som finns
+        Quiz-dags! Om du svarar rätt på alla quiz-frågor får du välja en till Poketer1. Frågekategorierna som finns
 är datorer, matematik och vetenskap/natur. Kategorierna väljs slumpmässigt. Lycka till!"""
         print_frame([x], 'white', 15)
 
@@ -304,13 +304,13 @@ def quiz_card(player, poketer, is_cpu, available_poketers):
     input("\nTryck enter för att fortsätta\n")
 
     if won_a_poketer:
-        x = f"""Bra jobbat! Du har vunnit en ny Poketer!"""
+        x = f"""Bra jobbat! Du har vunnit en ny Poketer1!"""
         print_frame([x], poketer.color, 15)
         quiz_poke = choose_poketer(available_poketers, is_cpu=False)
         if quiz_poke is not None:
             player.add_team(quiz_poke)
     else:
-        x = f"""Tyvärr! Du hade inte alla rätt på quizet så du vann inte en till Poketer. Bättre lycka nästa gång!"""
+        x = f"""Tyvärr! Du hade inte alla rätt på quizet så du vann inte en till Poketer1. Bättre lycka nästa gång!"""
         print_frame([x], poketer.color, 15)
 
     input("\nTryck enter för att fortsätta\n")

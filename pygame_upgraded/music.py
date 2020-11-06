@@ -1,3 +1,4 @@
+import pygame
 import pygame as pg
 from pygame import mixer
 
@@ -53,3 +54,10 @@ def sound(filename):
     sound = mixer.Sound(filename)
     sound.play()
     sound.set_volume(0.2)
+
+
+def music(filename):
+    pygame.mixer.init()
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.1)

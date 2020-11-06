@@ -17,10 +17,10 @@ def intro_card(poketer, is_cpu, live):
     else:
         x = """
         
-        Your Poketer has a certain mood. You now have the opportunity to increase your Poketer's health
-        by searching for a city in Sweden where you think the inhabitants are in the same mood as your Poketer.
+        Your Poketer1 has a certain mood. You now have the opportunity to increase your Poketer1's health
+        by searching for a city in Sweden where you think the inhabitants are in the same mood as your Poketer1.
         The residents' mood is based on what they tweet. The more emotional they are, the more they increase
-        your Poketer's health. Good luck!
+        your Poketer1's health. Good luck!
         
         """
         print_frame([x], 'white', 15)
@@ -66,11 +66,11 @@ def card_attack(user_pokemon, cpu, cpu_pokemon, is_cpu):
     if is_cpu:
         cpu_pokemon.attack_fnc(user_pokemon)
         if user_pokemon.get_health() <= 0:
-            print(f'*** Your Poketer {user_pokemon.name} fainted. {cpu_pokemon.name} won! ***')
+            print(f'*** Your Poketer1 {user_pokemon.name} fainted. {cpu_pokemon.name} won! ***')
     else:
         user_pokemon.attack_fnc(cpu_pokemon)
         if cpu_pokemon.get_health() <= 0:
-            print(f'*** Your opponents Poketer {cpu_pokemon.name} fainted. {user_pokemon.name} won! ***')
+            print(f'*** Your opponents Poketer1 {cpu_pokemon.name} fainted. {user_pokemon.name} won! ***')
 
     input("\nPress Enter to continue\n")
 
@@ -88,7 +88,7 @@ def card_block(user, user_pokemon, cpu, cpu_pokemon, is_cpu):
     if is_cpu:
         cpu_pokemon.block(user, user_pokemon)
         if cpu_pokemon.get_health() <= 0:
-            print(f'*** Din motståndares Poketer {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
+            print(f'*** Din motståndares Poketer1 {cpu_pokemon.name} svimmade. {user_pokemon.name} vann! ***')
     else:
         user_pokemon.block(cpu, cpu_pokemon)
         if user_pokemon.get_health() <= 0:
@@ -113,7 +113,7 @@ def chance_card_attack(player, poketer, is_cpu, live):
     else:
         x = f"""
         Chancecard - attack! Choose a city and guess which mood is the most common among its inhabitants. If your guess is
-        correct, your Poketers attack-power is incressed by {attack_bonus} p. If your guess is incorrect, your Poketer 
+        correct, your Poketers attack-power is incressed by {attack_bonus} p. If your guess is incorrect, your Poketer1 
         will loss attack-power by {attack_bonus} p. Good luck!
 
         """
@@ -294,11 +294,11 @@ mer aktuellt i samhällsdebatten."""
 def quiz_card(player, poketer, is_cpu, available_poketers):
 
     if is_cpu:
-        x = f"""{player.name} valde quiz och har nu chansen att vinna en till Poketer! """
+        x = f"""{player.name} valde quiz och har nu chansen att vinna en till Poketer1! """
         print_frame([x], poketer.color, 15)
     else:
         x = f"""
-        Quiz-dags! Om du svarar rätt på alla quiz-frågor får du välja en till Poketer. Frågekategorierna som finns
+        Quiz-dags! Om du svarar rätt på alla quiz-frågor får du välja en till Poketer1. Frågekategorierna som finns
 är datorer, matematik och vetenskap/natur. Kategorierna väljs slumpmässigt. Lycka till!"""
         print_frame([x], 'white', 15)
 
@@ -309,13 +309,13 @@ def quiz_card(player, poketer, is_cpu, available_poketers):
     input("\nTryck enter för att fortsätta\n")
 
     if won_a_poketer:
-        x = f"""Bra jobbat! Du har vunnit en ny Poketer!"""
+        x = f"""Bra jobbat! Du har vunnit en ny Poketer1!"""
         print_frame([x], poketer.color, 15)
         quiz_poke = choose_poketer(available_poketers, is_cpu=False)
         if quiz_poke is not None:
             player.add_team(quiz_poke)
     else:
-        x = f"""Tyvärr! Du hade inte alla rätt på quizet så du vann inte en till Poketer. Bättre lycka nästa gång!"""
+        x = f"""Tyvärr! Du hade inte alla rätt på quizet så du vann inte en till Poketer1. Bättre lycka nästa gång!"""
         print_frame([x], poketer.color, 15)
 
     input("\nTryck enter för att fortsätta\n")

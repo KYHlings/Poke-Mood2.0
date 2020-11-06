@@ -62,7 +62,7 @@ def game_loop(user, user_pokemon, cpu, cpu_pokemon, live, available_poketers):
     while True:
         print("\nVad vill du göra?")
         choices = {1: "Attackera", 2: "Blockera", 3: "Chanskort - attack", 4: "Chanskort - hälsa",
-                   5: "Quiz - vinn en ny Poketer", 6: "Visa status", 7: "Avsluta spelet"}
+                   5: "Quiz - vinn en ny Poketer1", 6: "Visa status", 7: "Avsluta spelet"}
 
         for choice in choices:
             print(choice, choices[choice])
@@ -128,7 +128,7 @@ def start_game(live):
     cpu = User(colored("Olof", cpu_pokemon.color))
     cpu.add_team(cpu_pokemon)
 
-    x = f"\n{user.name}, din Poketer är {user_pokemon.name}."
+    x = f"\n{user.name}, din Poketer1 är {user_pokemon.name}."
     y = user_pokemon.get_stats()
     print_frame([x, y], user_pokemon.color, 15)
 

@@ -1,3 +1,5 @@
+import pygame as pg
+
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -11,3 +13,19 @@ LIGHT_RED_SELECTED = (255, 100, 100)
 LIGHT_RED_UNSELECTED = (225, 70, 70)
 LIGHT_BLUE_SELECTED = (120, 120, 255)
 LIGHT_BLUE_UNSELECTED = (70, 70, 225)
+width = 800
+height = 600
+screen = pg.display.set_mode((width, height))
+bg = pg.image.load("images/Background_forest.jpg")
+background = pg.transform.scale(bg, (800, 600))
+vs_sign = pg.image.load("images/VS.PNG")
+vs_sign1 = pg.transform.scale(vs_sign, (200, 150))
+background_win1 = pg.image.load("images/winning_pic.jpg")
+background_win = pg.transform.scale(background_win1, (800, 600))
+logo1 = pg.image.load("images/LOGO.PNG")
+logo = pg.transform.scale(logo1, (360, 222))
+start_background1 = pg.image.load("images/background_start.png")
+start_background = pg.transform.scale(start_background1, (800, 600))
+instructions_frame1 = pg.image.load("images/Frame_background.PNG")
+instructions_frame = pg.transform.scale(instructions_frame1, (650, 450))
+start_screen = None

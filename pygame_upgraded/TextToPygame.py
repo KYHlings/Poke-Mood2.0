@@ -13,7 +13,7 @@ from Textbased_Pygame.print_module import print_frame
 from pokemood_text_based.quiz import quiz
 from pokemood_text_based.sentiment_analysis import sentiment_analysis
 import pygame as pg
-from poketer import *
+from poketer1 import *
 
 init()
 
@@ -87,10 +87,10 @@ def intro_card(poketer, is_cpu, live):
     else:
         x = """
 
-        Your Poketer has a certain mood. You now have the opportunity to increase your Poketer's health
-        by searching for a city in Sweden where you think the inhabitants are in the same mood as your Poketer.
+        Your Poketer1 has a certain mood. You now have the opportunity to increase your Poketer1's health
+        by searching for a city in Sweden where you think the inhabitants are in the same mood as your Poketer1.
         The residents' mood is based on what they tweet. The more emotional they are, the more they increase
-        your Poketer's health. Good luck!
+        your Poketer1's health. Good luck!
 
         """
         print_frame([x], 'white', 15)
@@ -129,10 +129,10 @@ def start_game(live):
     poketer_mood_explanation_text(username)
     input("\nPress Enter to continue\n")
 
-    gunnar = Poketer(colored("Happy Gunnar", 'yellow'), 'happy', 'yellow', 50, 50, 45, catchword="#YOLO")
-    ada = Poketer(colored("Aggressiva Ada", 'red'), 'angry', 'red', 50, 50, 45, catchword="#FTW")
-    #louise = Poketer(colored("Ledsna Louise", 'blue'), 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
-    #kalle = Poketer(colored("Kärleksfulla Kalle", 'magenta'), 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
+    gunnar = Poketer1(colored("Happy Gunnar", 'yellow'), 'happy', 'yellow', 50, 50, 45, catchword="#YOLO")
+    ada = Poketer1(colored("Aggressiva Ada", 'red'), 'angry', 'red', 50, 50, 45, catchword="#FTW")
+    #louise = Poketer1(colored("Ledsna Louise", 'blue'), 'sad', 'blue', 50, 50, 45, catchword="#TGIF")
+    #kalle = Poketer1(colored("Kärleksfulla Kalle", 'magenta'), 'loving', 'magenta', 50, 50, 45, catchword="#XOXO")
 
 
     user = User(colored(username, gunnar.color))

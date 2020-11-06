@@ -38,7 +38,7 @@ class Poketer:
     def healthcheck(self,opponent_pokemon, opponent_name):
         if self.health <= 0 or opponent_pokemon.health <= 0:
             if opponent_pokemon.health <= 0:
-                print(f'*** {opponent_name} Poketer {opponent_pokemon.name} svimmade. Du vann! ***')
+                print(f'*** {opponent_name} Poketer1 {opponent_pokemon.name} svimmade. Du vann! ***')
             if self.health <= 0:
                 print(f'*** Din poketer {self.name} svimmade. {opponent_name} vann! ***')
             alive = False
@@ -74,7 +74,7 @@ class Poketer:
         return mood_score
 
     def __repr__(self):
-        return f'Poketer: {self.name} Mood: {self.mood}'
+        return f'Poketer1: {self.name} Mood: {self.mood}'
 
 
 class User:
@@ -119,8 +119,8 @@ def main():
     print(f"{user.name}, det är din tur! ")
 
 
-    x = """Din Poketer har ett visst humör. Du har nu möjligheten att öka din Poketers hälsa genom
-            att söka efter en stad i Sverige där du tror att invånarna är på samma humör som din Poketer.
+    x = """Din Poketer1 har ett visst humör. Du har nu möjligheten att öka din Poketers hälsa genom
+            att söka efter en stad i Sverige där du tror att invånarna är på samma humör som din Poketer1.
             Invånarnas humör baseras på vad de twittrar. Ju mer känslosamma de är desto mer ökar 
             din Poketers hälsa. Lycka till!"""
     print(f"""\n

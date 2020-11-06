@@ -1,10 +1,13 @@
 import math
 import pygame
 
-import common
-from common import BLACK, WHITE, QUIZ_TRANSP_GREEN_LIGHT, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_RED
-from common import QUIZ_DARKGREEN, FONT_ROBOTO, screen_size, rel_to_pix, TextBox, Button
+from pygame_upgraded import common
+from pygame_upgraded.common import TextBox, screen_size, FONT_ROBOTO, Button, QUIZ_TRANSP_GREEN, \
+    QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, QUIZ_TRANSP_RED, rel_to_pix
+from pygame_upgraded.variables import *
 
+
+from pygame_upgraded.music import music, sound
 from pygame_upgraded.quiz_api import get_quiz, quiz_categories
 
 
