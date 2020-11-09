@@ -95,7 +95,7 @@ import pygame as pg
 
 from Pygame.constants import WHITE
 from pygame_upgraded.text_handler import text_speech
-from pygame_upgraded.variables import screen
+from pygame_upgraded.variables import screen, BLACK
 
 
 class Poketer:
@@ -114,6 +114,7 @@ class Poketer:
 
     def add_max_health(self, health_score):
         self.max_health += health_score
+
 gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO", img_name="images/Green_monster_resized.png")
 ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="images/Pink_dragon_01.png")
 
@@ -143,25 +144,27 @@ def glada_gunnar(x, y, a, b):
         screen.blit(gunnar.image, (x, y))
         text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"{gunnar.name}", gunnar.color, a, b, True)
         text_speech(screen, "RobotoSlab-Medium.ttf", 15,
-                    f"Stats: HP: {gunnar.health}/{gunnar.max_health}, Attack: {gunnar.attack}, Mood: {gunnar.mood}",
+                    f" Attack: {gunnar.attack}, Mood: {gunnar.mood}",
                     WHITE, 170, 20, True)
-        bg_bar1 = pg.Rect(200, 50, gunnar.max_health, 50)
+        bg_bar1 = pg.Rect(200, 50, 2*gunnar.max_health, 50)
         hp_bar1 = pg.Rect(200, 50, 200 * (gunnar.health * 0.01), 50)
         if gunnar.health > 0:
             pg.draw.rect(screen, (255, 0, 0), bg_bar1)
             pg.draw.rect(screen, (0, 255, 0), hp_bar1)
-
+        text_speech(screen,"RobotoSlab-Medium.ttf", 15, f"HP: {gunnar.health}/{gunnar.max_health}",BLACK,275,75,True)
 
 def aggressive_ada(x, y, a, b):
     screen.blit(ada.image, (x, y))
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"{ada.name}", ada.color, a, b, True)
-    text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"Stats: HP: {ada.health} Attack: {ada.attack} Mood: {ada.mood}",
+    text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"Attack: {ada.attack} Mood: {ada.mood}",
                 WHITE, 630, 575, True)
-    bg_bar1 = pg.Rect(50, 530, ada.max_health, 50)
+    bg_bar1 = pg.Rect(50, 530, 2 * ada.max_health, 50)
     hp_bar1 = pg.Rect(50, 530, 200 * (ada.health * 0.01), 50)
     if ada.health > 0:
         pg.draw.rect(screen, (255, 0, 0), bg_bar1)
         pg.draw.rect(screen, (0, 255, 0), hp_bar1)
+    text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"HP: {ada.health}/{ada.max_health}", BLACK, 125, 555,
+                True)
 
 
 def sword(turn):
