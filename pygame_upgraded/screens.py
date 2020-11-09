@@ -1,4 +1,5 @@
 import sys
+from random import choices, choice
 
 import pygame as pg
 
@@ -126,7 +127,7 @@ class StartScreen:
     #
 
     def handle_mouse_button(self, button):
-        city = "Göteborg"
+        city = choice(get_cities())
         mx, my = pg.mouse.get_pos()
         battle_button_rect = pg.Rect(285, 245, 225, 70)
         quit_button_rect = pg.Rect(650, 30, 140, 40)
