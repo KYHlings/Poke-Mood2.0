@@ -127,6 +127,18 @@ def quit_button_start():
         text_speech(screen, "RobotoSlab-Black.ttf", 30, "Quit Game", BLACK, width / 2.025,
                     height / 1.27, True)
 
+def choose_city_button():
+    mouse = pg.mouse.get_pos()
+    if 285 <= mouse[0] <= 285 + 240 and 400 <= mouse[1] <= 400 + 100:
+        pg.draw.rect(screen, BLACK, (285, 400, 225, 70), 3)
+        pg.draw.rect(screen, COLOR_LIGHT_SELECTED, (287, 402, 221, 66))
+        text_speech(screen, "RobotoSlab-Black.ttf", 30, "Choose city!", BLACK, 400,
+                    435, True)
+    else:
+        pg.draw.rect(screen, BLACK, (285, 400, 225, 70), 3)
+        pg.draw.rect(screen, COLOR_LIGHT_UNSELECTED, (287, 402, 221, 66))
+        text_speech(screen, "RobotoSlab-Black.ttf", 30, "Choose city!", BLACK, 400,
+                    435, True)
 
 class Button:
     def __init__(self, rel_pos, rel_size, color, highlight, font_size, font_color, text):

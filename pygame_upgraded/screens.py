@@ -16,7 +16,7 @@ from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attac
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
-    quiz_button, start_game_button, instructions_button, quit_button_start, Button
+    quiz_button, start_game_button, instructions_button, quit_button_start, Button, choose_city_button
 
 
 class WinnerScreenAda:
@@ -130,8 +130,11 @@ class StartScreen:
         mx, my = pg.mouse.get_pos()
         battle_button_rect = pg.Rect(285, 245, 225, 70)
         quit_button_rect = pg.Rect(650, 30, 140, 40)
+        choose_city_button_rect = pg.Rect(285, 400, 225, 70)
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
+                sys.exit()
+            if choose_city_button_rect.collidepoint((mx, my)):
                 city = MoodScreen()
                 return city
             if battle_button_rect.collidepoint((mx, my)):
@@ -156,6 +159,7 @@ class StartScreen:
 
         # aggressive_ada(520, 300, 640, 300)
         # glada_gunnar(8, 30, 122, 45)
+        choose_city_button()
         battle_time_button()
         quit_button()
 
