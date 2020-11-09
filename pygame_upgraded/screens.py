@@ -126,14 +126,18 @@ class StartScreen:
     #
 
     def handle_mouse_button(self, button):
+        city = "Göteborg"
         mx, my = pg.mouse.get_pos()
         battle_button_rect = pg.Rect(285, 245, 225, 70)
         quit_button_rect = pg.Rect(650, 30, 140, 40)
         if button == 1:
+            if quit_button_rect.collidepoint((mx, my)):
+                city = MoodScreen()
+                return city
             if battle_button_rect.collidepoint((mx, my)):
                 if self.gunnar_mood_score == 0:
                     if self.popup_state == "not clicked":
-                        self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
+                        self.gunnar_mood_score = calc_mood_score(gunnar.mood, city, live=False)
                         gunnar.add_health(self.gunnar_mood_score)
                         gunnar.add_max_health(self.gunnar_mood_score)
                         self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
@@ -142,8 +146,6 @@ class StartScreen:
                         self.popup_state = "one click"
                 music_battle()
                 return BattleScreen()
-            if quit_button_rect.collidepoint((mx, my)):
-                return MoodScreen()
         return self
 
     def handle_timer(self):
@@ -162,16 +164,30 @@ class MoodScreen:
     def __init__(self):
         self.city_buttons = []
         self.moodscore = 0
-        self.button_positions = [(0.3, 0.6),
+        self.button_positions = [(0.3, 0.4),
+                                 (0.7, 0.4),
+                                 (0.3, 0.6),
                                  (0.7, 0.6),
                                  (0.3, 0.8),
                                  (0.7, 0.8)]
-        cities = get_cities()
-        for idx, city in enumerate(cities[:4]):
-            quiz_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
+        self.cities = get_cities()
+        for idx, city in enumerate(self.cities[:6]):
+            self.city_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
                                  color=QUIZ_TRANSP_GREEN, highlight=QUIZ_TRANSP_GREEN_HIGHL,
                                  font_size=22, font_color=WHITE, text=city)
-            self.city_buttons.append(quiz_button)
+            self.city_buttons.append(self.city_button)
+
+
+    def handle_mouse_button(self, button):
+        mx, my = pg.mouse.get_pos()
+        city_button_rect = pg.Rect(30, 540, 140, 40)
+        quit_button_rect = pg.Rect(650, 30, 140, 40)
+        if button == 1:
+            if city_button_rect.collidepoint((mx, my)):
+                return self.city_buttons.index(self.city_button)
+            if quit_button_rect.collidepoint((mx, my)):
+                sys.exit()
+
 
     def handle_timer(self):
         return self
