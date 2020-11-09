@@ -284,7 +284,7 @@ class AttackScreen:
             aggressive_ada(504, 156 + y_off, 650, 550)
 
         quit_button()
-        back_button()
+        # back_button()
 
         # Rotate sword depending on whose turn it is
         sword(self.turn)
@@ -362,7 +362,7 @@ class SpecialAttackScreen:
             aggressive_ada(504, 156 + y_off, 650, 550)
 
         quit_button()
-        back_button()
+        # back_button()
         crossed_sword()
 
 

@@ -111,6 +111,7 @@ class Poketer:
 
     def add_health(self, health_score):
         self.health += health_score
+        self.max_health += health_score
 
 
 gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO", img_name="images/Green_monster_resized.png")
@@ -144,10 +145,11 @@ def glada_gunnar(x, y, a, b):
         text_speech(screen, "RobotoSlab-Medium.ttf", 15,
                     f"Stats: HP: {gunnar.health}, Attack: {gunnar.attack}, Mood: {gunnar.mood}",
                     WHITE, 170, 20, True)
-        bg_bar1 = pg.Rect(550, 50, 200, 50)
-        hp_bar1 = pg.Rect(550, 50, 200 * (gunnar.health * 0.01), 50)
-        pg.draw.rect(screen, (255, 0, 0), bg_bar1)
-        pg.draw.rect(screen, (0, 255, 0), hp_bar1)
+        bg_bar1 = pg.Rect(200, 50, gunnar.max_health, 50)
+        hp_bar1 = pg.Rect(200, 50, 200 * (gunnar.health * 0.01), 50)
+        if gunnar.health > 0:
+            pg.draw.rect(screen, (255, 0, 0), bg_bar1)
+            pg.draw.rect(screen, (0, 255, 0), hp_bar1)
 
 
 def aggressive_ada(x, y, a, b):
@@ -155,10 +157,11 @@ def aggressive_ada(x, y, a, b):
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"{ada.name}", ada.color, a, b, True)
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"Stats: HP: {ada.health} Attack: {ada.attack} Mood: {ada.mood}",
                 WHITE, 630, 575, True)
-    bg_bar1 = pg.Rect(630, 575, 200, 50)
-    hp_bar1 = pg.Rect(630, 575, 200 * (ada.health * 0.01), 50)
-    pg.draw.rect(screen, (255, 0, 0), bg_bar1)
-    pg.draw.rect(screen, (0, 255, 0), hp_bar1)
+    bg_bar1 = pg.Rect(50, 530, ada.max_health, 50)
+    hp_bar1 = pg.Rect(50, 530, 200 * (ada.health * 0.01), 50)
+    if ada.health > 0:
+        pg.draw.rect(screen, (255, 0, 0), bg_bar1)
+        pg.draw.rect(screen, (0, 255, 0), hp_bar1)
 
 
 def sword(turn):

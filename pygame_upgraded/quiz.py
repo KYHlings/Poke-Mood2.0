@@ -186,6 +186,12 @@ class QuizScreen:
 
 class QuizFinishedScreen:
     def __init__(self, num_of_correct_ans, number_of_quiz_questions):
+
+        pygame.mixer.music.stop()
+        for point in range(num_of_correct_ans):
+            poketer.add_health(10)
+
+        info_text = f"Good job! You answered {num_of_correct_ans} questions correctly!"
         # if num_of_correct_ans >= number_of_quiz_questions - 1:
         #     info_text = "WOW you're awesome! You get 10 health points as an award! "
         #     sound("music/kids_cheering.mp3")
@@ -195,10 +201,6 @@ class QuizFinishedScreen:
         #                 f"Better luck next time!"
         #     sound("music/booing_crowd.mp3")
 
-        pygame.mixer.music.stop()
-        percent_correct = num_of_correct_ans / number_of_quiz_questions
-        poketer.add_health(int(50 * percent_correct))
-        info_text = f"WOW you're awesome! You get {int(percent_correct * 50)} health points as an award! "
         background_image_raw = pygame.image.load("images/Background_forest.jpg").convert()
         self.background_image = pygame.transform.scale(background_image_raw, screen_size)
 
