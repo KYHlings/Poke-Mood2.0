@@ -4,6 +4,7 @@ import pygame as pg
 
 from Pygame.constants import WHITE, YELLOW_LIGHT, BLACK, YELLOW, RED
 from pygame_upgraded import global_stuff
+from pygame_upgraded.Textbased_Pygame.cards_helper import get_cities
 from pygame_upgraded.global_stuff import periodic_movement
 from pygame_upgraded.mood_score import calc_mood_score
 from pygame_upgraded.music import music_lose_game_melody, music_intro, music_battle, music_win_game_melody
@@ -13,7 +14,7 @@ from pygame_upgraded.text_handler import text_speech, pop_up_bubbles, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
     aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
-    start_screen
+    start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
     quiz_button, start_game_button, instructions_button, quit_button_start
 
@@ -149,17 +150,34 @@ class StartScreen:
         return self
 
     def render(self, screen):
-        screen.fill(WHITE)
         screen.blit(background, (0, 0))
 
-        aggressive_ada(520, 300, 640, 300)
-        glada_gunnar(8, 30, 122, 45)
-
-        pop_up_bubbles(self.popup_state, self.gunnar_mood_score, self.ada_mood_score)
-
+        # aggressive_ada(520, 300, 640, 300)
+        # glada_gunnar(8, 30, 122, 45)
         battle_time_button()
         quit_button()
-        text_speech(screen, "RobotoSlab-Medium.ttf", 15, "Press [enter] for moodscores", BLACK, 397, 330, True)
+
+class MoodScreen:
+    def __init__(self):
+        self.moodscore = moodscore
+        self.button_positions = [(0.3, 0.6),
+                                 (0.7, 0.6),
+                                 (0.3, 0.8),
+                                 (0.7, 0.8),
+                                 0.1, 0,4]
+        cities = get_cities()
+        for idx, city in enumerate(cities):
+            quiz_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
+                                 color=QUIZ_TRANSP_GREEN, highlight=QUIZ_TRANSP_GREEN_HIGHL,
+                                 font_size=22, font_color=WHITE, text=city)
+            self.category_buttons.append(quiz_button)
+
+
+    def render(self, screen):
+        screen.blit(background, (0, 0))
+        cities = get_cities()
+        for city in cities
+
 
 
 class BattleScreen:
