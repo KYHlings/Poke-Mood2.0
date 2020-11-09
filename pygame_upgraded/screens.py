@@ -16,7 +16,7 @@ from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attac
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
-    quiz_button, start_game_button, instructions_button, quit_button_start
+    quiz_button, start_game_button, instructions_button, quit_button_start, Button
 
 
 class WinnerScreenAda:
@@ -143,7 +143,7 @@ class StartScreen:
                 music_battle()
                 return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                return MoodScreen()
         return self
 
     def handle_timer(self):
@@ -157,26 +157,29 @@ class StartScreen:
         battle_time_button()
         quit_button()
 
+
 class MoodScreen:
     def __init__(self):
-        self.moodscore = moodscore
+        self.city_buttons = []
+        self.moodscore = 0
         self.button_positions = [(0.3, 0.6),
                                  (0.7, 0.6),
                                  (0.3, 0.8),
-                                 (0.7, 0.8),
-                                 0.1, 0,4]
+                                 (0.7, 0.8)]
         cities = get_cities()
-        for idx, city in enumerate(cities):
+        for idx, city in enumerate(cities[:4]):
             quiz_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
                                  color=QUIZ_TRANSP_GREEN, highlight=QUIZ_TRANSP_GREEN_HIGHL,
                                  font_size=22, font_color=WHITE, text=city)
-            self.category_buttons.append(quiz_button)
+            self.city_buttons.append(quiz_button)
 
+    def handle_timer(self):
+        return self
 
     def render(self, screen):
         screen.blit(background, (0, 0))
-        cities = get_cities()
-        for city in cities
+        for city in self.city_buttons:
+            city.render(screen)
 
 
 

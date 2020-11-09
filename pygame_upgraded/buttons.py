@@ -130,7 +130,7 @@ def quit_button_start():
 
 class Button:
     def __init__(self, rel_pos, rel_size, color, highlight, font_size, font_color, text):
-        self.position = (screen_size[0] * rel_pos[0], screen_size[1] * rel_pos[1])
+        self.position = (int(screen_size[0] * rel_pos[0]) ,int( screen_size[1] * rel_pos[1]))
         self.size = (screen_size[0] * rel_size[0], screen_size[1] * rel_size[1])
         self.color = color
         self.highlight = highlight
