@@ -8,7 +8,7 @@ Quiz questions from Open Trivia DB - a free to use, user-contibuted trivia quest
 
 quiz_categories = {
     "Computers": 'https://opentdb.com/api.php?amount=50&category=18&type=multiple&encode=base64',
-    "Sports": 'https://opentdb.com/api.php?amount=50&category=21&difficulty=easy&type=multiple&encode=base64',
+    "Sports": 'https://opentdb.com/api.php?amount=50&category=21&type=multiple&encode=base64',
     "Film": 'https://opentdb.com/api.php?amount=50&category=11&difficulty=easy&type=multiple&encode=base64',
     "Video Games": "https://opentdb.com/api.php?amount=50&category=15&type=multiple&encode=base64"}
 
