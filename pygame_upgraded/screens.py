@@ -2,7 +2,7 @@ import sys
 
 import pygame as pg
 
-from Pygame.constants import WHITE, YELLOW_LIGHT, BLACK, YELLOW, RED
+from Pygame.constants import WHITE, YELLOW_LIGHT,  YELLOW, RED
 from pygame_upgraded import global_stuff
 from pygame_upgraded.Textbased_Pygame.cards_helper import get_cities
 from pygame_upgraded.global_stuff import periodic_movement
@@ -10,11 +10,11 @@ from pygame_upgraded.mood_score import calc_mood_score
 from pygame_upgraded.music import music_lose_game_melody, music_intro, music_battle, music_win_game_melody
 from pygame_upgraded.quiz import QuizStartScreen
 from pygame_upgraded.quiz_api import quiz_categories
-from pygame_upgraded.text_handler import text_speech, pop_up_bubbles, TextBox
+from pygame_upgraded.text_handler import text_speech, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
     aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
-    start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL
+    start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
     quiz_button, start_game_button, instructions_button, quit_button_start, Button
 
@@ -162,8 +162,10 @@ class StartScreen:
 
 class MoodScreen:
     def __init__(self):
+        self.popup_state = "not clicked"
         self.city_buttons = []
-        self.moodscore = 0
+        self.gunnar_mood_score = 0
+        self.ada_mood_score = 0
         self.button_positions = [(0.3, 0.4),
                                  (0.7, 0.4),
                                  (0.3, 0.6),
@@ -175,18 +177,31 @@ class MoodScreen:
             self.city_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
                                  color=QUIZ_TRANSP_GREEN, highlight=QUIZ_TRANSP_GREEN_HIGHL,
                                  font_size=22, font_color=WHITE, text=city)
+            self.city = city
             self.city_buttons.append(self.city_button)
 
+    def handle_mouse_button(self, mouse_button):
+        clicked_button_idx = None
+        for city_button in self.city_buttons:
+            if city_button.handle_mouse_button(mouse_button):
+                clicked_button_idx = self.city_buttons.index(city_button)
+                break
 
-    def handle_mouse_button(self, button):
-        mx, my = pg.mouse.get_pos()
-        city_button_rect = pg.Rect(30, 540, 140, 40)
-        quit_button_rect = pg.Rect(650, 30, 140, 40)
-        if button == 1:
-            if city_button_rect.collidepoint((mx, my)):
-                return self.city_buttons.index(self.city_button)
-            if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+        if clicked_button_idx is not None:
+            quiz_button.color = QUIZ_TRANSP_GREEN_LIGHT
+            print(clicked_button_idx)
+            city = self.cities[clicked_button_idx]
+            if self.gunnar_mood_score == 0:
+                if self.popup_state == "not clicked":
+                    self.gunnar_mood_score = calc_mood_score(gunnar.mood, city, live=False)
+                    gunnar.add_health(self.gunnar_mood_score)
+                    gunnar.add_max_health(self.gunnar_mood_score)
+                    self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
+                    ada.add_health(self.ada_mood_score)
+                    ada.add_max_health(self.ada_mood_score)
+                    self.popup_state = "one click"
+            music_battle()
+            return BattleScreen()
 
 
     def handle_timer(self):
