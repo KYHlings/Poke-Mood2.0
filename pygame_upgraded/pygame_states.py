@@ -23,8 +23,6 @@ def mainloop(screen):
         # Event handling
         ev = pg.event.poll()
 
-        if ev.type == pg.KEYDOWN:
-            state = state.handle_keydown(ev.key)
 
         if ev.type == pg.MOUSEBUTTONDOWN:
             temp_state = state.handle_mouse_button(ev.button)

@@ -233,11 +233,11 @@ class AttackScreen:
     def handle_mouse_button(self, button):
         mx, my = pg.mouse.get_pos()
         quit_button_rect = pg.Rect(650, 30, 140, 40)
-        back_button_rect = pg.Rect(30, 540, 140, 40)
+        #back_button_rect = pg.Rect(30, 540, 140, 40)
 
         if button == 1:
-            if back_button_rect.collidepoint((mx, my)):
-                return BattleScreen()
+            # if back_button_rect.collidepoint((mx, my)):
+            #     return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
                 sys.exit()
             return self
@@ -312,11 +312,11 @@ class SpecialAttackScreen:
     def handle_mouse_button(self, button):
         mx, my = pg.mouse.get_pos()
         quit_button_rect = pg.Rect(650, 30, 140, 40)
-        back_button_rect = pg.Rect(30, 540, 140, 40)
+        #back_button_rect = pg.Rect(30, 540, 140, 40)
 
         if button == 1:
-            if back_button_rect.collidepoint((mx, my)):
-                return BattleScreen()
+            # if back_button_rect.collidepoint((mx, my)):
+            #     return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
                 sys.exit()
         return self
