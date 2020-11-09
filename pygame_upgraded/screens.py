@@ -134,8 +134,10 @@ class StartScreen:
                     if self.popup_state == "not clicked":
                         self.gunnar_mood_score = calc_mood_score(gunnar.mood, "Göteborg", live=False)
                         gunnar.add_health(self.gunnar_mood_score)
+                        gunnar.add_max_health(self.gunnar_mood_score)
                         self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
                         ada.add_health(self.ada_mood_score)
+                        ada.add_max_health(self.ada_mood_score)
                         self.popup_state = "one click"
                 music_battle()
                 return BattleScreen()

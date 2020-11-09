@@ -111,9 +111,9 @@ class Poketer:
 
     def add_health(self, health_score):
         self.health += health_score
+
+    def add_max_health(self, health_score):
         self.max_health += health_score
-
-
 gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO", img_name="images/Green_monster_resized.png")
 ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="images/Pink_dragon_01.png")
 
@@ -143,7 +143,7 @@ def glada_gunnar(x, y, a, b):
         screen.blit(gunnar.image, (x, y))
         text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"{gunnar.name}", gunnar.color, a, b, True)
         text_speech(screen, "RobotoSlab-Medium.ttf", 15,
-                    f"Stats: HP: {gunnar.health}, Attack: {gunnar.attack}, Mood: {gunnar.mood}",
+                    f"Stats: HP: {gunnar.health}/{gunnar.max_health}, Attack: {gunnar.attack}, Mood: {gunnar.mood}",
                     WHITE, 170, 20, True)
         bg_bar1 = pg.Rect(200, 50, gunnar.max_health, 50)
         hp_bar1 = pg.Rect(200, 50, 200 * (gunnar.health * 0.01), 50)
