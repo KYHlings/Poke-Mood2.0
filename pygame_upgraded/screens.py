@@ -17,7 +17,7 @@ from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attac
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, screen, BLACK
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
-    quiz_button, start_game_button, instructions_button, quit_button_start, Button, choose_city_button
+    quiz_button, start_game_button, instructions_button, quit_button_start, Button, choose_city_button, block_button
 
 
 class WinnerScreenAda:
@@ -282,7 +282,7 @@ class BattleScreen:
 
         screen.blit(vs_sign1, (300, 225))
         quit_button()
-        #back_button()
+        block_button()
         attack_button()
         special_attack_button()
         quiz_button()
