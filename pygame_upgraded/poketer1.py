@@ -181,6 +181,13 @@ def aggressive_ada(x, y, a, b):
     text_speech(screen, "RobotoSlab-Medium.ttf", 15, f"HP: {ada.health}/{ada.max_health}", BLACK, 125, 555,
                 True)
 
+def shield():
+    shield_pic = pg.image.load("images/shield_white.png")
+    x_off, y_off = periodic_movement(1, 5)
+    rotate_image = pg.transform.rotozoom(shield_pic, 0 + x_off, 1)
+    new_rect = rotate_image.get_rect(center=(400, 300))
+    screen.blit(rotate_image, new_rect)
+
 
 def sword(turn):
     sword = pg.image.load("images/sword_resized.png")

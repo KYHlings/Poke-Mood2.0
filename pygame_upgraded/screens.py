@@ -13,7 +13,7 @@ from pygame_upgraded.quiz import QuizStartScreen
 from pygame_upgraded.quiz_api import quiz_categories
 from pygame_upgraded.text_handler import text_speech, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
-    aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving, block_function
+    aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving, block_function, shield
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, screen, BLACK
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
@@ -443,7 +443,7 @@ class BlockScreen:
             aggressive_ada(504, 156 + y_off, 650, 550)
 
         quit_button()
-
+        shield()
 
 class SpecialAttackScreen:
     def __init__(self, turn_,is_block):
