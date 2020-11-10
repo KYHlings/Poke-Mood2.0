@@ -18,6 +18,7 @@ from pygame_upgraded.variables import background, vs_sign1, background_win, logo
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, screen, BLACK
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
     quiz_button, start_game_button, instructions_button, quit_button_start, Button, choose_city_button, block_button
+from pygame_upgraded.run import main
 
 
 class WinnerScreenAda:
@@ -76,7 +77,7 @@ class MenuStartScreen:
             if instructions_button_rect.collidepoint((mx, my)):
                 return InstructionsScreen()
             if quit_game_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
 
     def handle_timer(self):
         return self
@@ -102,7 +103,7 @@ class InstructionsScreen:
             if back_button_rect.collidepoint((mx, my)):
                 return MenuStartScreen()
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
 
     def handle_timer(self):
         return self
@@ -131,7 +132,7 @@ class StartScreen:
         choose_city_button_rect = pg.Rect(285, 400, 225, 70)
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
             if choose_city_button_rect.collidepoint((mx, my)):
                 city = MoodScreen()
                 return city
@@ -182,7 +183,6 @@ def show_city_score(city, city2):
         text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Ada got {calc_mood_score(mood=ada.mood, city=city2, live=False)} added to its health!", BLACK, 389, 300, True)
         text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Ada got her moodscore from {city2}", BLACK, 389, 330, True)
         pg.display.update()
-
 
 
 class MoodScreen:
@@ -258,7 +258,7 @@ class BattleScreen:
 
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
             if block_button_rect.collidepoint((mx, my)):
                 return BlockScreen("user")
             if attack_button_rect.collidepoint((mx, my)):
@@ -319,7 +319,7 @@ class AttackScreen:
             # if back_button_rect.collidepoint((mx, my)):
             #     return BattleScreen()
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
             return self
 
     def handle_timer(self):
@@ -400,7 +400,7 @@ class BlockScreen:
 
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
         return self
 
     def handle_timer(self):
@@ -472,7 +472,7 @@ class SpecialAttackScreen:
 
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
         return self
 
     def handle_timer(self):
@@ -534,7 +534,7 @@ class WinnerScreenGunnar:
         quit_button_rect = pg.Rect(650, 30, 140, 40)
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
-                sys.exit()
+                main()
         return self
 
     def handle_timer(self):
