@@ -121,10 +121,6 @@ class StartScreen:
         self.gunnar_mood_score = 0
         self.ada_mood_score = 0
         #self.music = music_intro()
-    #
-    # def handle_keydown(self, key):
-    #     if key == pg.K_RETURN:
-    #
 
     def handle_mouse_button(self, button):
         city = choice(get_cities())
@@ -149,6 +145,7 @@ class StartScreen:
                         ada.add_health(self.ada_mood_score)
                         ada.add_max_health(self.ada_mood_score)
                         self.popup_state = "one click"
+                show_city_score(city, city2)
                 music_battle()
                 return BattleScreen()
         return self
@@ -164,15 +161,15 @@ class StartScreen:
         choose_city_button()
         battle_time_button()
         quit_button()
-        text_speech(screen, "RobotoSlab-Medium.ttf", 25, "Press battel to get a random mood score, or choose a city!",
+        text_speech(screen, "RobotoSlab-Medium.ttf", 25, "Press battle to get a random mood score, or choose a city!",
                     BLACK, 400, 200,True)
         pg.display.update()
 
-def show_city_score(city):
+
+def show_city_score(city, city2):
     clock = pg.time.Clock()
     waiting = True
-    time = 3
-    city2 = choice(get_cities())
+    time = 5
     while waiting:
         dt = clock.tick(1) / 1000
         time -= dt
@@ -181,7 +178,9 @@ def show_city_score(city):
             waiting = False
         screen.blit(background, (0, 0))
         text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Gunnar got {calc_mood_score(mood=gunnar.mood, city=city, live=False)} added to its health!", BLACK, 389, 150, True)
+        text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Gunnar got his moodscore from {city}", BLACK, 389, 180, True)
         text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Ada got {calc_mood_score(mood=ada.mood, city=city2, live=False)} added to its health!", BLACK, 389, 300, True)
+        text_speech(screen, "RobotoSlab-Medium.ttf", 30, f"Ada got her moodscore from {city2}", BLACK, 389, 330, True)
         pg.display.update()
 
 
@@ -207,6 +206,7 @@ class MoodScreen:
             self.city_buttons.append(self.city_button)
 
     def handle_mouse_button(self, mouse_button):
+        city2 = choice(get_cities())
         clicked_button_idx = None
         for city_button in self.city_buttons:
             if city_button.handle_mouse_button(mouse_button):
@@ -222,14 +222,13 @@ class MoodScreen:
                     self.gunnar_mood_score = calc_mood_score(gunnar.mood, city, live=False)
                     gunnar.add_health(self.gunnar_mood_score)
                     gunnar.add_max_health(self.gunnar_mood_score)
-                    self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
+                    self.ada_mood_score = calc_mood_score(ada.mood, city2, live=False)
                     ada.add_health(self.ada_mood_score)
                     ada.add_max_health(self.ada_mood_score)
                     self.popup_state = "one click"
-            show_city_score(self.city)
+            show_city_score(self.city, city2)
             music_battle()
             return BattleScreen()
-
 
     def handle_timer(self):
         return self
@@ -238,7 +237,6 @@ class MoodScreen:
         screen.blit(background, (0, 0))
         for city in self.city_buttons:
             city.render(screen)
-
 
 
 class BattleScreen:
@@ -325,7 +323,7 @@ class AttackScreen:
 
     def handle_timer(self):
         time_now = pg.time.get_ticks()
-        if time_now - self.timeout > 5000 and self.timeout != 0:
+        if time_now - self.timeout > 2000 and self.timeout != 0:
             self.timeout = 0
 
             if ada.health <= 0:
@@ -404,7 +402,7 @@ class SpecialAttackScreen:
 
     def handle_timer(self):
         time_now = pg.time.get_ticks()
-        if time_now - self.timeout > 5000 and self.timeout != 0:
+        if time_now - self.timeout > 2000 and self.timeout != 0:
             self.timeout = 0
 
             if ada.health <= 0:
