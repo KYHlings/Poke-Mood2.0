@@ -6,7 +6,7 @@ from Pygame.constants import BLACK, COLOR_LIGHT_SELECTED, COLOR_LIGHT_UNSELECTED
 from pygame_upgraded.music import sound_ambient_hover_over_attack_btn, sound_ambient_hover_over_special_attack_btn, \
     sound_ambient_hover_quizz_btn
 from pygame_upgraded.text_handler import text_speech, TextBox
-from pygame_upgraded.variables import width, height, screen, screen_size, FONT_ROBOTO, QUIZ_DARKGREEN
+from pygame_upgraded.variables import width, height, screen, screen_size, FONT_ROBOTO, QUIZ_DARKGREEN, YELLOW
 
 
 def battle_time_button():
@@ -50,27 +50,40 @@ def back_button():
 def attack_button():
     mouse = pg.mouse.get_pos()
     if 87 <= mouse[0] <= 87 + 150 and 430 <= mouse[1] <= 430 + 50:
-        pg.draw.rect(screen, LIGHT_RED_SELECTED, [89, 432, 147, 47])
-        pg.draw.rect(screen, BLACK, [87, 430, 150, 50], 3)
-        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 162, 453, True)
+        pg.draw.rect(screen, LIGHT_RED_SELECTED, [59, 432, 147, 47])
+        pg.draw.rect(screen, BLACK, [57, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 132, 453, True)
         sound_ambient_hover_over_attack_btn()
     else:
-        pg.draw.rect(screen, LIGHT_RED_UNSELECTED, [89, 432, 147, 47])
-        pg.draw.rect(screen, BLACK, [87, 430, 150, 50], 3)
-        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 162, 453, True)
+        pg.draw.rect(screen, LIGHT_RED_UNSELECTED, [59, 432, 147, 47])
+        pg.draw.rect(screen, BLACK, [57, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 132, 453, True)
+
+
+def block_button():
+    mouse = pg.mouse.get_pos()
+    if 87 <= mouse[0] <= 87 + 150 and 430 <= mouse[1] <= 430 + 50:
+        pg.draw.rect(screen, LIGHT_RED_SELECTED, [59, 432, 147, 47])
+        pg.draw.rect(screen, YELLOW, [57, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 132, 453, True)
+        sound_ambient_hover_over_attack_btn()
+    else:
+        pg.draw.rect(screen, LIGHT_RED_UNSELECTED, [59, 432, 147, 47])
+        pg.draw.rect(screen, LIGHTYELLOW, [57, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Attack", BLACK, 132, 453, True)
 
 
 def special_attack_button():
     mouse = pg.mouse.get_pos()
-    if 325 <= mouse[0] <= 325 + 150 and 430 <= mouse[1] <= 430 + 50:
-        pg.draw.rect(screen, LIGHT_BLUE_SELECTED, [327, 432, 147, 47])
-        pg.draw.rect(screen, BLACK, [325, 430, 150, 50], 3)
-        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Special", BLACK, 400, 453, True)
+    if 385 <= mouse[0] <= 385 + 150 and 460 <= mouse[1] <= 460 + 50:
+        pg.draw.rect(screen, LIGHT_BLUE_SELECTED, [387, 432, 147, 47])
+        pg.draw.rect(screen, BLACK, [385, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Special", BLACK, 460, 453, True)
         sound_ambient_hover_over_special_attack_btn()
     else:
-        pg.draw.rect(screen, LIGHT_BLUE_UNSELECTED, [327, 432, 147, 47])
-        pg.draw.rect(screen, BLACK, [325, 430, 150, 50], 3)
-        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Special", BLACK, 400, 453, True)
+        pg.draw.rect(screen, LIGHT_BLUE_UNSELECTED, [387, 432, 147, 47])
+        pg.draw.rect(screen, BLACK, [385, 430, 150, 50], 3)
+        text_speech(screen, "RobotoSlab-Black.ttf", 25, "Special", BLACK, 460, 453, True)
 
 
 def quiz_button():

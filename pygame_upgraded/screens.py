@@ -202,7 +202,6 @@ class MoodScreen:
             self.city_button = Button(rel_pos=self.button_positions[idx], rel_size=(0.4, 0.2),
                                  color=QUIZ_TRANSP_GREEN, highlight=QUIZ_TRANSP_GREEN_HIGHL,
                                  font_size=22, font_color=WHITE, text=city)
-            self.city = city
             self.city_buttons.append(self.city_button)
 
     def handle_mouse_button(self, mouse_button):
@@ -226,7 +225,7 @@ class MoodScreen:
                     ada.add_health(self.ada_mood_score)
                     ada.add_max_health(self.ada_mood_score)
                     self.popup_state = "one click"
-            show_city_score(self.city, city2)
+            show_city_score(city, city2)
             music_battle()
             return BattleScreen()
 
@@ -252,10 +251,11 @@ class BattleScreen:
     def handle_mouse_button(self, button):
         mx, my = pg.mouse.get_pos()
         quit_button_rect = pg.Rect(650, 30, 140, 40)
-        #back_button_rect = pg.Rect(30, 540, 140, 40)
-        attack_button_rect = pg.Rect(87, 430, 150, 50)
-        block_button_rect = pg.Rect(325, 430, 150, 50)
+        attack_button_rect = pg.Rect(57, 430, 150, 50)
+        sp_attack_button_rect = pg.Rect(325, 430, 150, 50)
         quiz_button_rect = pg.Rect(563, 430, 150, 50)
+        block_button_rect = pg.Rect(563, 430, 150, 50)
+
         if button == 1:
             if quit_button_rect.collidepoint((mx, my)):
                 sys.exit()
@@ -263,7 +263,7 @@ class BattleScreen:
             #     return StartScreen()
             if attack_button_rect.collidepoint((mx, my)):
                 return AttackScreen("user")
-            if block_button_rect.collidepoint((mx, my)):
+            if sp_attack_button_rect.collidepoint((mx, my)):
                 return SpecialAttackScreen("user")
             if quiz_button_rect.collidepoint((mx, my)):
                 global_stuff.next_screen = QuizStartScreen(5, quiz_categories, self, gunnar)
