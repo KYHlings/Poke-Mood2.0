@@ -45,7 +45,6 @@ def mainloop(screen):
 
 
 if __name__ == '__main__':
-    start_game(False)
     global_stuff.common_init()
     pg.display.set_caption("PokeMood")
     mainloop(screen)

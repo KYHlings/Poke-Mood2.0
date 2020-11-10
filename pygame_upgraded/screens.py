@@ -15,7 +15,7 @@ from pygame_upgraded.text_handler import text_speech, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
     aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
-    start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT
+    start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, screen
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
     quiz_button, start_game_button, instructions_button, quit_button_start, Button, choose_city_button
 
@@ -128,6 +128,7 @@ class StartScreen:
 
     def handle_mouse_button(self, button):
         city = choice(get_cities())
+        city2 = choice(get_cities())
         mx, my = pg.mouse.get_pos()
         battle_button_rect = pg.Rect(285, 245, 225, 70)
         quit_button_rect = pg.Rect(650, 30, 140, 40)
@@ -144,7 +145,7 @@ class StartScreen:
                         self.gunnar_mood_score = calc_mood_score(gunnar.mood, city, live=False)
                         gunnar.add_health(self.gunnar_mood_score)
                         gunnar.add_max_health(self.gunnar_mood_score)
-                        self.ada_mood_score = calc_mood_score(ada.mood, "Västerås", live=False)
+                        self.ada_mood_score = calc_mood_score(ada.mood, city2, live=False)
                         ada.add_health(self.ada_mood_score)
                         ada.add_max_health(self.ada_mood_score)
                         self.popup_state = "one click"
@@ -163,6 +164,26 @@ class StartScreen:
         choose_city_button()
         battle_time_button()
         quit_button()
+
+
+def show_city_score():
+    clock = pg.time.Clock()
+    waiting = True
+    time = 3
+
+    while waiting:
+        dt = clock.tick(3) / 1000
+        time -= dt
+        if time == 0:
+            waiting = False
+
+    city = choice(get_cities())
+    city2 = choice(get_cities())
+    screen.blit(background, (0, 0))
+    print("!!!!!")
+    text_speech(screen, "RobotoSlab-Medium.ttf", 20, f"Gunnar got {calc_mood_score(mood=gunnar.mood, city=city, live=False)}", YELLOW_LIGHT, 389, 150, True)
+    text_speech(screen, "RobotoSlab-Medium.ttf", 20, f"Ada got {calc_mood_score(mood=ada.mood, city=city2, live=False)}", YELLOW_LIGHT, 389, 150, True)
+    pg.display.update()
 
 
 class MoodScreen:
@@ -205,6 +226,7 @@ class MoodScreen:
                     ada.add_health(self.ada_mood_score)
                     ada.add_max_health(self.ada_mood_score)
                     self.popup_state = "one click"
+            show_city_score()
             music_battle()
             return BattleScreen()
 
