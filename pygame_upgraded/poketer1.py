@@ -1,5 +1,4 @@
-import time
-from random import randint
+
 from termcolor import colored
 #from prints_module import atk_txt, delay_print, successful_block, unsuccessful_block
 from pygame_upgraded.Textbased_Pygame.print_module import atk_txt
@@ -119,22 +118,33 @@ gunnar = Poketer("Glada Gunnar", 'happy', 'yellow', 50, 50, 45, catchword="#YOLO
 ada = Poketer("Aggressiva Ada", 'angry', 'red', 50, 50, 45, catchword="#FTW", img_name="images/Pink_dragon_01.png")
 
 
-def attack_function(attacker, defender):
-    defender.add_health(-attacker.attack)
-    return attacker.attack
+def attack_function(attacker, defender,is_block):
+    if is_block:
+        defender.add_health(-attacker.attack/2)
+        return attacker.attack/2
+    else:
+        defender.add_health(-attacker.attack)
+        return attacker.attack
 
-def block_function(attacker, defender):
+def block_function():
     misschans = randint(1, 4)
     if misschans <= 3:
-        defender.add_health(-attacker.attack * 2)
-        return attacker.attack * 2
+        return True
+    else:
+        return False
 
-def special_attack(attacker, defender):
+def special_attack(attacker, defender,is_block):
     misschans = randint(1, 6)
-    if misschans <= 2:
-        defender.add_health(-attacker.attack * 2)
-        return attacker.attack * 2
-    return 0
+    if is_block:
+        if misschans <= 2:
+            defender.add_health(-attacker.attack)
+            return attacker.attack
+        return 0
+    else:
+        if misschans <= 2:
+            defender.add_health(-attacker.attack * 2)
+            return attacker.attack * 2
+        return 0
 
 
 def cpu_random_attack():

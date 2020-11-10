@@ -1,5 +1,5 @@
 import sys
-from random import choices, choice
+from random import choice
 
 import pygame as pg
 
@@ -13,7 +13,7 @@ from pygame_upgraded.quiz import QuizStartScreen
 from pygame_upgraded.quiz_api import quiz_categories
 from pygame_upgraded.text_handler import text_speech, TextBox
 from pygame_upgraded.poketer1 import gunnar, ada, attack_function, special_attack, cpu_random_attack, glada_gunnar, \
-    aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving
+    aggressive_ada, sword, crossed_sword, winning_crown_hasse_moving, winning_crown_ada_moving, block_function
 from pygame_upgraded.variables import background, vs_sign1, background_win, logo, start_background, instructions_frame, \
     start_screen, QUIZ_TRANSP_GREEN, QUIZ_TRANSP_GREEN_HIGHL, QUIZ_TRANSP_GREEN_LIGHT, screen, BLACK
 from pygame_upgraded.buttons import battle_time_button, quit_button, back_button, attack_button, special_attack_button, \
@@ -241,7 +241,7 @@ class MoodScreen:
 class BattleScreen:
     def __init__(self):
         #self.music = music_battle() #CL
-        pass
+        self.is_block = None
 
     def handle_keydown(self, key):
         if key == pg.K_BACKSPACE:
@@ -253,7 +253,7 @@ class BattleScreen:
         quit_button_rect = pg.Rect(650, 30, 140, 40)
         attack_button_rect = pg.Rect(57, 430, 150, 50)
         block_button_rect = pg.Rect(222, 430, 150, 50)
-        sp_attack_button_rect = pg.Rect(325, 430, 150, 50)
+        sp_attack_button_rect = pg.Rect(390, 430, 150, 50)
         quiz_button_rect = pg.Rect(563, 430, 150, 50)
 
         if button == 1:
@@ -262,9 +262,9 @@ class BattleScreen:
             if block_button_rect.collidepoint((mx, my)):
                 return BlockScreen("user")
             if attack_button_rect.collidepoint((mx, my)):
-                return AttackScreen("user")
+                return AttackScreen("user",self.is_block)
             if sp_attack_button_rect.collidepoint((mx, my)):
-                return SpecialAttackScreen("user")
+                return SpecialAttackScreen("user",self.is_block)
             if quiz_button_rect.collidepoint((mx, my)):
                 global_stuff.next_screen = QuizStartScreen(5, quiz_categories, self, gunnar)
         return self
@@ -291,16 +291,17 @@ class BattleScreen:
 
 
 class AttackScreen:
-    def __init__(self, turn_):
+    def __init__(self, turn_,is_block):
         self.turn = turn_
         self.timeout = pg.time.get_ticks()
+        self.is_block = is_block
 
         if self.turn == "user":
-            attack_score = attack_function(gunnar, ada)
+            attack_score = attack_function(gunnar, ada,is_block)
             self.text_gunnar = f"Gunnar attacked Ada! Ada took {attack_score} in damage!"
             self.text_ada = ""
         else:
-            attack_score = attack_function(ada, gunnar)
+            attack_score = attack_function(ada, gunnar,is_block)
             self.text_ada = f"Ada attacked Gunnar! You took {attack_score} in damage!"
             self.text_gunnar = ""
 
@@ -334,9 +335,9 @@ class AttackScreen:
             # when the users attack is finished - let cpu make a move
             if self.turn == "user":
                 if cpu_random_attack():
-                    return AttackScreen("cpu")
+                    return AttackScreen("cpu",self.is_block)
                 else:
-                    return SpecialAttackScreen("cpu")
+                    return SpecialAttackScreen("cpu",self.is_block)
 
             # when the cpu's attack is finished - return to Battlescreen
             if self.turn == "cpu":
@@ -373,15 +374,17 @@ class BlockScreen:
     def __init__(self, turn_):
         self.turn = turn_
         self.timeout = pg.time.get_ticks()
-
-
+        self.is_block = block_function()
 
         if self.turn == "user":
-            attack_score = special_attack(gunnar, ada)
-            self.text_gunnar = f"Gunnar blocked! Ada took {attack_score} in damage!"
+            #is_block = block_function(gunnar, ada)
+            if self.is_block == True:
+                self.text_gunnar = f"Gunnar blocked!"
+            else:
+                self.text_gunnar =f"Failed block!"
             self.text_ada = ""
         else:
-            attack_score = special_attack(ada, gunnar)
+            attack_score = special_attack(ada, gunnar,self.is_block)
             self.text_ada = f"Ada special attacked Gunnar! You took {attack_score} in damage!"
             self.text_gunnar = ""
 
@@ -413,9 +416,9 @@ class BlockScreen:
             # when the users attack is finished - let cpu make a move
             if self.turn == "user":
                 if cpu_random_attack():
-                    return AttackScreen("cpu")
+                    return AttackScreen("cpu",self.is_block)
                 else:
-                    return SpecialAttackScreen("cpu")
+                    return SpecialAttackScreen("cpu",self.is_block)
 
             # when the cpu's attack is finished - return to Battlescreen
             if self.turn == "cpu":
@@ -443,16 +446,18 @@ class BlockScreen:
 
 
 class SpecialAttackScreen:
-    def __init__(self, turn_):
+    def __init__(self, turn_,is_block):
         self.turn = turn_
         self.timeout = pg.time.get_ticks()
+        self.is_block = is_block
 
         if self.turn == "user":
-            attack_score = special_attack(gunnar, ada)
+            attack_score = special_attack(gunnar, ada,is_block)
             self.text_gunnar = f"Gunnar special attacked Ada! Ada took {attack_score} in damage!"
             self.text_ada = ""
         else:
-            attack_score = special_attack(ada, gunnar)
+
+            attack_score = special_attack(ada, gunnar,is_block)
             self.text_ada = f"Ada special attacked Gunnar! You took {attack_score} in damage!"
             self.text_gunnar = ""
 
@@ -483,9 +488,9 @@ class SpecialAttackScreen:
             # when the users attack is finished - let cpu make a move
             if self.turn == "user":
                 if cpu_random_attack():
-                    return AttackScreen("cpu")
+                    return AttackScreen("cpu",self.is_block)
                 else:
-                    return SpecialAttackScreen("cpu")
+                    return SpecialAttackScreen("cpu",self.is_block)
 
             # when the cpu's attack is finished - return to Battlescreen
             if self.turn == "cpu":
