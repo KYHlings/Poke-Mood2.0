@@ -123,6 +123,11 @@ def attack_function(attacker, defender):
     defender.add_health(-attacker.attack)
     return attacker.attack
 
+def block_function(attacker, defender):
+    misschans = randint(1, 4)
+    if misschans <= 3:
+        defender.add_health(-attacker.attack * 2)
+        return attacker.attack * 2
 
 def special_attack(attacker, defender):
     misschans = randint(1, 6)
